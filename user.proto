@@ -1,0 +1,72 @@
+syntax = "proto3";
+option go_package = "/genproto";
+
+service UserService{
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponce){}
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponce){}
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponce){}
+    rpc GetUsedById(GetUserByIdRequest) returns (GetUserByIdResponce){}
+    rpc GetUsers(Void) returns (GetUserResponce){}
+}
+
+message User{
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string created_at = 4;
+    string updated_at = 5;
+    int64 deleted_at = 6;
+
+}
+
+message CreateUserRequest{
+    string first_name = 1;
+    string last_name = 2;
+}
+
+message CreateUserResponce{
+    string status = 1;
+    string message = 2;
+
+}
+
+message UpdateUserRequest {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+}
+
+message UpdateUserResponce{
+    string status = 1;
+    string message  = 2;
+    User user = 3;
+}
+
+
+
+message DeleteUserRequest{
+    string id = 1;
+}
+
+message DeleteUserResponce{
+    string status = 1;
+    string message = 2;
+}
+
+
+message GetUserByIdRequest {
+    string id = 1;
+}
+
+message GetUserByIdResponce{
+    string status = 1;
+    string message = 2;
+    User user = 3;
+}
+
+
+message GetUserResponce{
+    repeated User user = 1;
+}
+
+message Void{}
